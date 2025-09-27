@@ -1,0 +1,65 @@
+# MCP Weather Server
+
+This is my Agentic AI practice project for MCP server.
+
+This project implements a simple weather server that uses the `mcp` library to expose a single tool, `get_current_weather`, which fetches weather data from the [Open-Meteo API](https://open-meteo.com/).
+
+## Features
+
+*   Provides current weather data for a given latitude and longitude.
+*   Uses the `mcp` library to create a tool server.
+*   Asynchronously fetches data from the Open-Meteo API using `httpx`.
+
+## Requirements
+
+*   Python 3.13+
+*   `httpx>=0.28.1`
+*   `mcp[cli]>=1.15.0`
+
+## Installation
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/JoshuaChen2048/mcp-server-weather.git
+    cd mcp-server-weather
+    ```
+
+2.  **Install dependencies:**
+
+    It is recommended to use a virtual environment.
+
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt 
+    ```
+
+## Usage
+
+To run the server, execute the following command:
+
+```bash
+mcp run server.py
+```
+
+The server will start and listen for requests on stdio.
+
+## API
+
+### `get_current_weather(latitude: float, longitude: float) -> str`
+
+Retrieves the current weather for a specified location.
+
+**Arguments:**
+
+*   `latitude` (float): The latitude of the location.
+*   `longitude` (float): The longitude of the location.
+
+**Returns:**
+
+*   `str`: A JSON string containing the current weather data from the Open-Meteo API, or an error message if the data could not be fetched.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
