@@ -1,7 +1,7 @@
 [project]
 name = "mcp-server-weather"
 version = "0.1.0"
-description = "Add your description here"
+description = "A weather tool server using the MCP framework to provide weather data from the Open-Meteo API."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
