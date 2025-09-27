@@ -7,6 +7,7 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("weather")
 
 OPENMETEO_API_BASE = "https://api.open-meteo.com/v1"
+GEOCODING_API_BASE = "https://geocoding-api.open-meteo.com/v1"
 USER_AGENT = "weather-app/0.1"
 
 # Handle weather request to Open-Meteo API
@@ -26,6 +27,26 @@ async def make_openmeteo_request(url: str) -> dict[str, Any] | None:
         except Exception as e:
             print(f"Error fetching data from Open-Meteo API: {e}")
             return None
+
+@mcp.tool()
+async def get_coordinates_for_city(city_name: str) -> str:
+    """Get the latitude and longitude for a city.
+    
+    Args:
+        city_name (str): The name of the city.
+    """
+
+    url = f"{GEOCODING_API_BASE}/search?name={city_name}&count=1"
+    data = await make_openmeteo_request(url)
+
+    if not data or "results" not in data or not data["results"]:
+        return f"Could not find coordinates for {city_name}."
+
+    result = data["results"][0]    
+    return json.dumps({
+        "latitude": result["latitude"],
+        "longitude": result["longitude"]
+    })
 
 @mcp.tool()        
 async def get_current_weather(latitude: float, longitude: float) -> str:
