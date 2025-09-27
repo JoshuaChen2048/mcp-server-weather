@@ -45,6 +45,34 @@ mcp run server.py
 
 The server will start and listen for requests on stdio.
 
+## MCP Client Configuration
+
+To use this tool with an MCP client, you need to configure the client to run the server.
+
+### Claude Desktop Example
+
+Here is an example configuration for Claude Desktop's `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "weather": {
+      "command": "/Users/JoshuaC/.pyenv/shims/uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli]",
+        "mcp",
+        "run",
+        "/Users/JoshuaC/Documents/projects/mcp-server-weather/server.py"
+      ]
+    }
+  }
+}
+```
+
+**Note:** The paths in this example are specific to a particular user's environment. You will need to adjust the `command` and the path to `server.py` to match your own system's configuration.
+
 ## API
 
 ### `get_current_weather(latitude: float, longitude: float) -> str`
