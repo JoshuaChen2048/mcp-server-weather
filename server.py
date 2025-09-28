@@ -8,6 +8,7 @@ mcp = FastMCP("weather")
 
 OPENMETEO_API_BASE = "https://api.open-meteo.com/v1"
 GEOCODING_API_BASE = "https://geocoding-api.open-meteo.com/v1"
+HISTORICAL_API_BASE = "https://archive-api.open-meteo.com/v1"
 USER_AGENT = "weather-app/0.1"
 
 # Handle weather request to Open-Meteo API
@@ -89,6 +90,26 @@ async def get_daily_forecast(latitude: float, longitude: float, days: int = 7) -
 
     if not data:
         return "Error fetching weather forecast data."
+        
+    return json.dumps(data)
+
+@mcp.tool()
+async def get_historical_weather(latitude: float, longitude: float, start_date: str, end_date: str) -> str:
+    """Get historical weather data for a location.
+    
+    Args:
+        latitude (float): Latitude of the location.
+        longitude (float): Longitude of the location.
+        start_date (str): Start date in YYYY-MM-DD format.
+        end_date (str): End date in YYYY-MM-DD format.
+    """
+    daily_params = "weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max"
+    url = f"{HISTORICAL_API_BASE}/archive?latitude={latitude}&longitude={longitude}&start_date={start_date}&end_date={end_date}&daily={daily_params}"
+
+    data = await make_openmeteo_request(url)
+
+    if not data:
+        return "Error fetching historical weather data."
         
     return json.dumps(data)
 
