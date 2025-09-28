@@ -75,6 +75,18 @@ Here is an example configuration for Claude Desktop's `claude_desktop_config.jso
 
 ## API
 
+### `get_coordinates_for_city(city_name: str) -> str`
+
+Retrieves the latitude and longitude for a given city name.
+
+**Arguments:**
+
+*   `city_name` (str): The name of the city.
+
+**Returns:**
+
+*   `str`: A JSON string containing the latitude and longitude, or an error message if the city could not be found.
+
 ### `get_current_weather(latitude: float, longitude: float) -> str`
 
 Retrieves the current weather for a specified location.
