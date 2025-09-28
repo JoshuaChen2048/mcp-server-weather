@@ -129,6 +129,19 @@ Retrieves historical weather data for a specified location and date range.
 
 *   `str`: A JSON string containing the historical weather data from the Open-Meteo API, or an error message if the data could not be fetched.
 
+### `get_air_quality(latitude: float, longitude: float) -> str`
+
+Retrieves air quality data for a specified location.
+
+**Arguments:**
+
+*   `latitude` (float): The latitude of the location.
+*   `longitude` (float): The longitude of the location.
+
+**Returns:**
+
+*   `str`: A JSON string containing the air quality data from the Open-Meteo API, or an error message if the data could not be fetched.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
