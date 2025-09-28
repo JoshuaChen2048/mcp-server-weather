@@ -112,7 +112,22 @@ Retrieves the daily weather forecast for a specified location.
 
 **Returns:**
 
-*   `str`: A JSON string containing the daily weather forecast data from the Open-Meteo API, or an error message if the data could not be fetched.
+*   `str`: A JSON string containing the daily weather forecast data from the Open-MTeteo API, or an error message if the data could not be fetched.
+
+### `get_historical_weather(latitude: float, longitude: float, start_date: str, end_date: str) -> str`
+
+Retrieves historical weather data for a specified location and date range.
+
+**Arguments:**
+
+*   `latitude` (float): The latitude of the location.
+*   `longitude` (float): The longitude of the location.
+*   `start_date` (str): The start date of the period in `YYYY-MM-DD` format.
+*   `end_date` (str): The end date of the period in `YYYY-MM-DD` format.
+
+**Returns:**
+
+*   `str`: A JSON string containing the historical weather data from the Open-Meteo API, or an error message if the data could not be fetched.
 
 ## License
 
