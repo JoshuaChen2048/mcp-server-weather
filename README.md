@@ -2,13 +2,16 @@
 
 This is my Agentic AI practice project for MCP server.
 
-This project implements a simple weather server that uses the `mcp` library to expose a single tool, `get_current_weather`, which fetches weather data from the [Open-Meteo API](https://open-meteo.com/).
+This project is a comprehensive weather tool server that uses the `mcp` library to provide a wide range of weather-related data from the [Open-Meteo API](https://open-meteo.com/).
 
 ## Features
 
-*   Provides current weather data for a given latitude and longitude.
-*   Uses the `mcp` library to create a tool server.
-*   Asynchronously fetches data from the Open-Meteo API using `httpx`.
+*   **Geocoding:** Convert city names to latitude and longitude.
+*   **Current Weather:** Get the latest weather conditions for any location.
+*   **Daily Forecasts:** Retrieve weather forecasts for up to 16 days.
+*   **Historical Data:** Access historical weather information for a given date range.
+*   **Air Quality:** Fetch air quality data, including particulate matter and various gas levels.
+*   **Asynchronous:** Uses `httpx` for efficient, non-blocking API requests.
 
 ## Requirements
 
@@ -112,7 +115,7 @@ Retrieves the daily weather forecast for a specified location.
 
 **Returns:**
 
-*   `str`: A JSON string containing the daily weather forecast data from the Open-MTeteo API, or an error message if the data could not be fetched.
+*   `str`: A JSON string containing the daily weather forecast data from the Open-Meteo API, or an error message if the data could not be fetched.
 
 ### `get_historical_weather(latitude: float, longitude: float, start_date: str, end_date: str) -> str`
 
