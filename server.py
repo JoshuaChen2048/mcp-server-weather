@@ -69,5 +69,28 @@ async def get_current_weather(latitude: float, longitude: float) -> str:
     # Provide the entire response as a string to LLM, instead of trying to format it ourselves.
     return json.dumps(data)
 
+@mcp.tool()
+async def get_daily_forecast(latitude: float, longitude: float, days: int = 7) -> str:
+    """Get the daily weather forecast for a location.
+    
+    Args:
+        latitude (float): Latitude of the location.
+        longitude (float): Longitude of the location.
+        days (int): Number of days to forecast (1-16). Default is 7.
+    """
+    
+    if not 1 <= days <= 16:
+        return "Error: Number of days must be between 1 and 16."
+
+    daily_params = "weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max"
+    url = f"{OPENMETEO_API_BASE}/forecast?latitude={latitude}&longitude={longitude}&daily={daily_params}&forecast_days={days}"
+
+    data = await make_openmeteo_request(url)
+
+    if not data:
+        return "Error fetching weather forecast data."
+        
+    return json.dumps(data)
+
 if __name__ == "__main__":
     mcp.run(transport='stdio')
