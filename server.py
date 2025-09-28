@@ -9,6 +9,7 @@ mcp = FastMCP("weather")
 OPENMETEO_API_BASE = "https://api.open-meteo.com/v1"
 GEOCODING_API_BASE = "https://geocoding-api.open-meteo.com/v1"
 HISTORICAL_API_BASE = "https://archive-api.open-meteo.com/v1"
+AIR_QUALITY_API_BASE = "https://air-quality-api.open-meteo.com/v1"
 USER_AGENT = "weather-app/0.1"
 
 # Handle weather request to Open-Meteo API
@@ -110,6 +111,24 @@ async def get_historical_weather(latitude: float, longitude: float, start_date: 
 
     if not data:
         return "Error fetching historical weather data."
+        
+    return json.dumps(data)
+
+@mcp.tool()
+async def get_air_quality(latitude: float, longitude: float) -> str:
+    """Get air quality data for a location.
+    
+    Args:
+        latitude (float): Latitude of the location.
+        longitude (float): Longitude of the location.
+    """
+    hourly_params = "pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone"
+    url = f"{AIR_QUALITY_API_BASE}/air-quality?latitude={latitude}&longitude={longitude}&hourly={hourly_params}"
+
+    data = await make_openmeteo_request(url)
+
+    if not data:
+        return "Error fetching air quality data."
         
     return json.dumps(data)
 
