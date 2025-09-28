@@ -100,6 +100,20 @@ Retrieves the current weather for a specified location.
 
 *   `str`: A JSON string containing the current weather data from the Open-Meteo API, or an error message if the data could not be fetched.
 
+### `get_daily_forecast(latitude: float, longitude: float, days: int = 7) -> str`
+
+Retrieves the daily weather forecast for a specified location.
+
+**Arguments:**
+
+*   `latitude` (float): The latitude of the location.
+*   `longitude` (float): The longitude of the location.
+*   `days` (int, optional): The number of days to forecast, between 1 and 16. Defaults to 7.
+
+**Returns:**
+
+*   `str`: A JSON string containing the daily weather forecast data from the Open-Meteo API, or an error message if the data could not be fetched.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
